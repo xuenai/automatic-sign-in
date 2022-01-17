@@ -9,7 +9,10 @@ async function sleep (interval) {
 
 // 判断上午下午  0 1
 function checkType () {
+  console.log(moment)
+  console.log(Date.now())
   const timeStr = moment(Date.now()).format('HH:mm')
+  console.log(timeStr)
   if (timeStr < '10:00') return 0
   if (timeStr > '18:30') return 1
 }

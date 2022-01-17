@@ -1,5 +1,6 @@
 const moment = require('moment')
 const { login, loginOut } = require('./api')
+process.env.TZ = 'Asia/Shanghai';
 
 const range = 3 * 60 * 1000;
 

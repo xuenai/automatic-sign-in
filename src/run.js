@@ -17,10 +17,11 @@ function checkType () {
 // 签退签到
 let countFail = 0
 async function addAttendCheckinHandler () {
-  addAttendCheckin().catch(async () => {
+  addAttendCheckin().catch(async (e) => {
+    console.log('error', e)
     await sleep(1000);
     countFail++;
-    if (countFail < 60) {
+    if (countFail < 3) {
       addAttendCheckinHandler()
     }
   })

@@ -6,6 +6,11 @@ const range = 3 * 60 * 1000;
 ;(async () => {
   await sleep(1000 || Math.random() * range)
   const handler = [loginHandler, loginOutHandler][checkType()]
+  console.log(handler, checkType())
+  process.stdout.write(JSON.stringify({
+    xt: 'hj'
+  }) + '\n')
+  return
   if (handler) {
     handler()
   }

@@ -4,7 +4,7 @@ const { range } = require('./config')
 const { addAttendCheckin } = require('./api')
 
 ;(async () => {
-  await sleep(Math.random() * range);
+  await sleep(1000 || Math.random() * range);
   if (checkType()) addAttendCheckinHandler()
 })();
 

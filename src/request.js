@@ -1,6 +1,7 @@
 const axios = require('axios');
 const config = require('./config');
 const querystring = require('querystring');
+const http = require('http')
 
 const request = axios.create({
   baseURL: config.baseURL,
@@ -10,7 +11,8 @@ const request = axios.create({
     'Accept-Language': 'zh-Hans-CN;q=1',
     'Accept-Encoding': 'gzip, deflate',
     Cookie: 'UM_distinctid=17de046fac17f0-02bbbbb76672d3-3b176850-3d10d-17de046fac27f7'
-  }
+  },
+  httpAgent: new http.Agent({ keepAlive: true })
 })
 
 request.interceptors.request.use(config => {

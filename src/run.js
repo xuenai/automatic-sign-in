@@ -41,9 +41,12 @@ async function loginOutHandler () {
 ;(async () => {
   await sleep(1000 || Math.random() * range)
   const handler = [loginHandler, loginOutHandler][checkType()]
-  console.log(handler, checkType())
   process.stdout.write(JSON.stringify({
     xt: 'hj'
+  }) + '\n')
+  console.log(handler, checkType())
+  process.stdout.write(JSON.stringify({
+    xt: 'hj2'
   }) + '\n')
   return
   if (handler) {

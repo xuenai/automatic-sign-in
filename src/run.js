@@ -2,7 +2,7 @@ process.env.TZ = 'Asia/Shanghai'
 const moment = require('moment')
 const { range } = require('./config')
 const { addAttendCheckin } = require('./api')
-
+return
 ;(async () => {
   await sleep(1000 || Math.random() * range);
   if (checkType()) addAttendCheckinHandler()

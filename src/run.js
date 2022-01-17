@@ -1,59 +1,31 @@
+process.env.TZ = 'Asia/Shanghai'
 const moment = require('moment')
-const { login, loginOut } = require('./api')
-process.env.TZ = 'Asia/Shanghai';
+const { range } = require('./config')
+const { addAttendCheckin } = require('./api')
 
-const range = 3 * 60 * 1000;
+;(async () => {
+  await sleep(Math.random() * range);
+  if (checkType()) addAttendCheckinHandler()
+})();
+
+// 判断上午下午
+function checkType () {
+  const timeStr = moment(Date.now()).format('HH:mm')
+  return timeStr < '10:00' || timeStr > '18:30'
+}
+
+// 签退签到
+let countFail = 0
+async function addAttendCheckinHandler () {
+  addAttendCheckin().catch(async () => {
+    await sleep(1000);
+    countFail++;
+    if (countFail < 60) {
+      addAttendCheckinHandler()
+    }
+  })
+}
 
 async function sleep (interval) {
   return new Promise(r => setTimeout(r, interval))
 }
-
-// 判断上午下午  0 1
-function checkType () {
-  console.log(moment)
-  console.log(Date.now())
-  const timeStr = moment(Date.now()).format('HH:mm')
-  console.log(timeStr)
-  if (timeStr < '10:00') return 0
-  if (timeStr > '18:30') return 1
-}
-
-// 签dao
-let countInFail = 0
-async function loginHandler () {
-  login().catch(async () => {
-    await sleep(1000);
-    countInFail++;
-    if (countInFail < 60) {
-      loginHandler()
-    }
-  })
-}
-
-// 签退
-let countOutFail = 0
-async function loginOutHandler () {
-  loginOut().catch(async () => {
-    await sleep(1000);
-    countOutFail++;
-    if (countOutFail < 60) {
-      loginOutHandler()
-    }
-  })
-}
-
-;(async () => {
-  await sleep(1000 || Math.random() * range)
-  const handler = [loginHandler, loginOutHandler][checkType()]
-  process.stdout.write(JSON.stringify({
-    xt: 'hj'
-  }) + '\n')
-  console.log(handler, checkType())
-  process.stdout.write(JSON.stringify({
-    xt: 'hj2'
-  }) + '\n')
-  return
-  if (handler) {
-    handler()
-  }
-})();

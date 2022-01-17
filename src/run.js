@@ -3,18 +3,9 @@ const { login, loginOut } = require('./api')
 
 const range = 3 * 60 * 1000;
 
-;(async () => {
-  await sleep(1000 || Math.random() * range)
-  const handler = [loginHandler, loginOutHandler][checkType()]
-  console.log(handler, checkType())
-  process.stdout.write(JSON.stringify({
-    xt: 'hj'
-  }) + '\n')
-  return
-  if (handler) {
-    handler()
-  }
-})();
+async function sleep (interval) {
+  return new Promise(r => setTimeout(r, interval))
+}
 
 // 判断上午下午  0 1
 function checkType () {
@@ -47,6 +38,15 @@ async function loginOutHandler () {
   })
 }
 
-async function sleep (interval) {
-  return new Promise(r => setTimeout(r, interval))
-}
+;(async () => {
+  await sleep(1000 || Math.random() * range)
+  const handler = [loginHandler, loginOutHandler][checkType()]
+  console.log(handler, checkType())
+  process.stdout.write(JSON.stringify({
+    xt: 'hj'
+  }) + '\n')
+  return
+  if (handler) {
+    handler()
+  }
+})();

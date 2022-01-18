@@ -17,15 +17,12 @@ const moment = require('moment')
 // }
 
 // 签退
-// const loginOut = () => {
-//   return request({
-//     url: '/pushMessage/attendCheckin/addAttendCheckin',
-//     method: 'POST',
-//     data: Object.assign({
-//       checktime: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
-//     }, config.sendData)
-//   })
-// }
+const findAllByUid = () => {
+  return request({
+    url: '/back/imageShow/findAllByUid?platform=ios&uid=2833&version=v2.1.5',
+    method: 'GET'
+  })
+}
 
 // 签退签到
 const addAttendCheckin = () => {
@@ -41,7 +38,8 @@ const addAttendCheckin = () => {
 module.exports = {
   // login,
   // loginOut,
-  addAttendCheckin
+  addAttendCheckin,
+  findAllByUid
 }
 
 // accessToken=560293438591455d924d47ab9b5b3069000000&

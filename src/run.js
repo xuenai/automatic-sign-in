@@ -1,11 +1,13 @@
 process.env.TZ = 'Asia/Shanghai'
 const moment = require('moment')
 const { range } = require('./config')
-const { addAttendCheckin } = require('./api')
-return
+const { addAttendCheckin, findAllByUid } = require('./api')
+
+// 执行入口
 ;(async () => {
   await sleep(1000 || Math.random() * range);
-  if (checkType()) addAttendCheckinHandler()
+  // if (checkType()) addAttendCheckinHandler()
+  findAllByUid()
 })();
 
 // 判断上午下午

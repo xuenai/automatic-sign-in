@@ -7,6 +7,7 @@ const request = axios.create({
   baseURL: config.baseURL,
   headers: {
     Origin: config.Host,
+    Host: config.Host,
     'User-Agent': 'YoueData_iOS/2.1.5 (iPhone; iOS 14.5.1; Scale/2.00)',
     'Accept-Language': 'zh-Hans-CN;q=1',
     'Accept-Encoding': 'gzip, deflate',
@@ -19,13 +20,11 @@ request.interceptors.request.use(config => {
   if (['POST', 'post'].includes(config.method)) {
     config.data = querystring.stringify(config.data)
   }
-  console.log(config)
   return config
 })
 
 request.interceptors.response.use(function (response) {
   if (response.data && response.data.code == 0) {
-    console.log(response.data)
     return response.data
   } else {
     return Promise.reject(response);

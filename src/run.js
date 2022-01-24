@@ -1,30 +1,36 @@
 process.env.TZ = 'Asia/Shanghai'
 const moment = require('moment')
 const { range } = require('./config')
-const { addAttendCheckin, findAllByUid } = require('./api')
+const { addAttendCheckin, getSignDateRange } = require('./api')
+const schedule = require('node-schedule');
 
-// 执行入口
-;(async () => {
-  await sleep(1000 || Math.random() * range);
-  // if (checkType()) addAttendCheckinHandler()
-  findAllByUid()
-})();
+schedule.scheduleJob('0 30 9,18 * * *', task)
 
-// 判断上午下午
-function checkType () {
-  const timeStr = moment(Date.now()).format('HH:mm')
-  return timeStr < '10:00' || timeStr > '18:30'
+// 处理任务
+function task () {
+  getSignDateRange().then(async data => {
+    const [date, time] = moment(Date.now()).format('YYYY-MM-DD HH:mm').split(' ')
+    const week = new Date().getDay()
+    const two = data[date] || ([0, 6].includes(week) ? [0, 0] : [1, 1]) // 默认周末上午下午都不打卡，周一到周五上午下午都打卡
+    
+    if (
+      (time > '12:00' && two[1]) || // 下午打卡
+      (time < '12:00' && two[0]) // 上午打卡
+    ) {
+      await sleep(Math.random() * range);
+      addAttendCheckinHandler()
+    }
+  })
 }
 
 // 签退签到
-let countFail = 0
-async function addAttendCheckinHandler () {
+async function addAttendCheckinHandler (countFail = 0) {
   addAttendCheckin().catch(async (e) => {
     console.log('error', e)
     await sleep(1000);
     countFail++;
-    if (countFail < 3) {
-      addAttendCheckinHandler()
+    if (countFail <= 3) {
+      addAttendCheckinHandler(countFail)
     }
   })
 }

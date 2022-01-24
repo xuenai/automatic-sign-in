@@ -1,9 +1,11 @@
 {
   "scripts": {
-    "sign": "node ./src/run.js"
+    "sign": "node ./src/run.js",
+    "start": "pm2 start ./src/run.js -i 1"
   },
   "dependencies": {
     "axios": "^0.24.0",
-    "moment": "^2.29.1"
+    "moment": "^2.29.1",
+    "node-schedule": "^2.1.0"
   }
 }

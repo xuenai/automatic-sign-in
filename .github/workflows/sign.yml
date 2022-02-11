@@ -42,8 +42,8 @@ jobs:
       # Send project file
       - name: send
         run: |
-          scp -i ~/.ssh/id_rsa -r src xt@111.67.198.193:/home/xt/signApp
-          scp -i ~/.ssh/id_rsa package.json xt@111.67.198.193:/home/xt/signApp
+          scp -i ~/.ssh/id_rsa -r src xt@111.67.198.193:/home/xt/signApp/
+          scp -i ~/.ssh/id_rsa package.json xt@111.67.198.193:/home/xt/signApp/
 
       # Runs a set of commands using the runners shell
       - name: deploy

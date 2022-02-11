@@ -8,5 +8,5 @@ module.exports = {
     phoneNumber: 'AEABD163-0484-4C78-B11C-75C2E9841FB6',
     userId: 2833
   }),
-  range: 3 * 60 * 1000
+  range: 6 * 60 * 1000
 }

@@ -6,9 +6,6 @@ const schedule = require('node-schedule');
 
 schedule.scheduleJob('0 37 9 * * *', task)
 schedule.scheduleJob('0 25 18 * * *', task)
-schedule.scheduleJob('0,10,20,30,40,50 * * * * *', () => {
-  console.log(moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'))
-})
 
 // 处理任务
 function task () {

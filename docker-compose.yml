@@ -1,0 +1,8 @@
+version: '3'
+services:
+  auto-sign: 
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: auto-sign-i
+    container_name: auto-sign-c

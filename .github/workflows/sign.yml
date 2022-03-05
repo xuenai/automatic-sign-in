@@ -53,7 +53,7 @@ jobs:
           ssh work@111.67.200.210 "
             cd /home/work/automatic-sign-in/;
             git pull;
-            docer-compose build auto-sign;
+            docker-compose build auto-sign;
             docker-compose down;
             docker-compose up -d;
           "

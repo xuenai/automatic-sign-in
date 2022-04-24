@@ -4,8 +4,8 @@ const { range } = require('./config')
 const { addAttendCheckin, getSignDateRange } = require('./api')
 const schedule = require('node-schedule');
 
-schedule.scheduleJob('0 37 9 * * *', task)
-schedule.scheduleJob('0 25 18 * * *', task)
+schedule.scheduleJob('0 33 9 * * *', task)
+schedule.scheduleJob('0 10 18 * * *', task)
 
 // 处理任务
 function task () {

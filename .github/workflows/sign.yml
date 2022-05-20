@@ -33,13 +33,26 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       # - uses: actions/checkout@v2
       
+      # sign in server
+      - uses: appleboy/ssh-action@master
+        with:
+          host: 111.67.197.101
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script_stop: true
+          script: |
+            cd /home/work/automatic-sign-in/
+            git pull
+            docker-compose down
+            docker-compose up -d
+            
       # Temporarily set ssh key
-      - name: set ssh key
-        run: |
-          mkdir -p ~/.ssh/
-          echo "${{secrets.FOR_SIGN_RSA}}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan "111.67.200.210" >> ~/.ssh/known_hosts
+      # - name: set ssh key
+      #   run: |
+      #     mkdir -p ~/.ssh/
+      #     echo "${{secrets.FOR_SIGN_RSA}}" > ~/.ssh/id_rsa
+      #     chmod 600 ~/.ssh/id_rsa
+      #     ssh-keyscan "111.67.200.210" >> ~/.ssh/known_hosts
 
       # Send project file
       # - name: send
@@ -48,16 +61,16 @@ jobs:
       #     scp -i ~/.ssh/id_rsa package.json xt@111.67.200.210:/home/xt/signApp/
 
       # Runs a set of commands using the runners shell
-      - name: deploy
-        run: |
-          ssh work@111.67.200.210 "
-            cd /home/work/automatic-sign-in/;
-            git pull;
-            docker-compose build auto-sign;
-            docker-compose down;
-            docker-compose up -d;
-          "
+      # - name: deploy
+        # run: |
+        #   ssh work@111.67.200.210 "
+        #     cd /home/work/automatic-sign-in/;
+        #     git pull;
+        #     docker-compose build auto-sign;
+        #     docker-compose down;
+        #     docker-compose up -d;
+        #   "
 
       # delete ssh key
-      - name: delete
-        run: rm -rf ~/.ssh/id_rsa
+      # - name: delete
+      #   run: rm -rf ~/.ssh/id_rsa

@@ -1,5 +1,5 @@
 {
-  "name": "yama-backend",
+  "name": "autosign",
   "version": "0.0.1",
   "scripts": {
     "sign": "node ./src/run.js",

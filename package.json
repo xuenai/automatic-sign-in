@@ -1,11 +1,18 @@
 {
   "scripts": {
     "sign": "node ./src/run.js",
-    "start": "pm2 start ./src/run.js -i 1"
+    "start": "pm2 start ./src/run.js -i 1",
+    "prepare": "husky install",
+    "test": "echo 123 test"
   },
   "dependencies": {
     "axios": "^0.24.0",
     "moment": "^2.29.1",
     "node-schedule": "^2.1.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
+    "husky": "^8.0.0"
   }
 }

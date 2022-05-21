@@ -4,7 +4,8 @@
     "start": "pm2 start ./src/run.js -i 1",
     "prepare": "husky install",
     "lint": "eslint . --ext .js",
-    "test": "echo test"
+    "test": "echo test",
+    "release": "release-it"
   },
   "dependencies": {
     "axios": "^0.24.0",
@@ -19,6 +20,7 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.0",
     "eslint-plugin-promise": "^6.0.0",
-    "husky": "^8.0.0"
+    "husky": "^8.0.0",
+    "release-it": "^15.0.0"
   }
 }

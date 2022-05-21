@@ -1,4 +1,6 @@
 {
+  "name": "yama-backend",
+  "version": "0.0.1",
   "scripts": {
     "sign": "node ./src/run.js",
     "start": "pm2 start ./src/run.js -i 1",

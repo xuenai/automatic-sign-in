@@ -1,6 +1,6 @@
-const axios = require('axios');
-const config = require('./config');
-const querystring = require('querystring');
+const axios = require('axios')
+const config = require('./config')
+const querystring = require('querystring')
 const http = require('http')
 
 const request = axios.create({
@@ -27,10 +27,10 @@ request.interceptors.response.use(function (response) {
   if (response.data && response.data.code == 0) {
     return response.data
   } else {
-    return Promise.reject(response);
+    return Promise.reject(response)
   }
 }, function (error) {
-  return Promise.reject(error);
-});
+  return Promise.reject(error)
+})
 
 module.exports = request

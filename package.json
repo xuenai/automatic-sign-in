@@ -1,6 +1,6 @@
 {
   "name": "autosign",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "sign": "node ./src/run.js",
     "start": "pm2 start ./src/run.js -i 1",

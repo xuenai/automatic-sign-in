@@ -1,7 +1,7 @@
 const request = require('./request')
 const config = require('./config')
 const moment = require('moment')
-const axios = require('axios');
+const axios = require('axios')
 
 // 签退签到
 const addAttendCheckin = () => {
